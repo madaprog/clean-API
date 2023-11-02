@@ -12,7 +12,7 @@ class Post_Comment extends Model
     protected $fillable = [
         'user_id',
         'post_id',
-        'content'
+        'content',
     ];
 
 

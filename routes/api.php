@@ -27,7 +27,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'user_login']);
 
 
-//Posts
+//PostsResource
 
 //Community
 
@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::post('/tips/create', [TipsController::class, 'store']);
 
     //POST
+    Route::put('/post/update/{post}' , [PostController::class, 'update']);
+    Route::put('/post/delete/{post}' , [PostController::class, 'destroy']);
+    Route::get('/post/get_posts', [PostController::class, 'index']);
     Route::post('/post/like/create', [LikesController::class, 'store']);
     Route::post('/post/comment/create', [CommentsController::class, 'store']);
     Route::post('/post/create', [PostController::class, 'store']);
