@@ -8,12 +8,18 @@ use Exception;
 
 class CommunityController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $community = Community::where('user_id', Auth::user()->id)->get();
+
+        return response([
+            'data' => $community
+        ],200);
     }
 
     /**
@@ -37,7 +43,7 @@ class CommunityController extends Controller
         ]);
 
 
-  
+
 
         return response([
             'success' => 'community_created'
