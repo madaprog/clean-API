@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Community_Member;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityMemberController extends Controller
 {
@@ -13,7 +15,12 @@ class CommunityMemberController extends Controller
      */
     public function index()
     {
-        //
+
+        $user = Auth::user();
+        $community = Post::with('community_m')->where('user_id',$user->id)->get();
+        return response([
+            'data' => $community
+        ],200);
     }
 
     /**
@@ -61,8 +68,8 @@ class CommunityMemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Community_Member $community_Member)
     {
-        //
+
     }
 }

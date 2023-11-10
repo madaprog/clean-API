@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Community;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -15,7 +16,8 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        $community = Community::where('user_id', Auth::user()->id)->get();
+
+        $community = Community::withCount('community_member')->where('user_id', Auth::user()->id)->get();
 
         return response([
             'data' => $community

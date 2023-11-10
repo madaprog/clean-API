@@ -9,4 +9,8 @@ class Community_Member extends Model
 {
     use HasFactory;
     protected $fillable = ['user_id', 'community_id'];
+
+    public function community(){
+        return $this->belongsTo(Community::class);
+    }
 }
